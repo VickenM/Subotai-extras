@@ -136,9 +136,10 @@ class Download(ComputeNode):
 
         self.count = 0
 
-    @ComputeNode.Decorators.show_ui_computation
     @QtCore.Slot()
     def compute(self):
+        self.start_spinner_signal.emit()
+        self.stop_glow_signal.emit()
         url = self.get_first_param('url')
         filename = self.get_first_param('filename', pluggable=INPUT_PLUG)
 
